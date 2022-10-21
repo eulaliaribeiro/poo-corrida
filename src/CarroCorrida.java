@@ -96,21 +96,30 @@ public class CarroCorrida {
 
     public void acelerar() {
         if (isLigado() && (getVelocidadeAtual() < getVelocidadeMaxima())) {
-            setVelocidadeAtual(getVelocidadeAtual() + 1);
+            setVelocidadeAtual(getVelocidadeAtual() + 10); // acelerar de 10 em 10 km/h
             System.out.println(getPiloto().getNome() + " acelerou! Velocidade atual = " + getVelocidadeAtual() + " km/h");
         } else if (!isLigado()){
-            System.out.println(getPiloto().getNome() + ", ligue o carro para poder acelerar!");
+            System.out.println("O carro de " + getPiloto().getNome() + " não está ligado!");
         } else if (getVelocidadeAtual() >= getVelocidadeMaxima()) {
-            System.out.println(getPiloto().getNome() + ", a velocidade do carro não pode ficar acima da permitida!");
+            System.out.println("A velocidade do carro " + getNumeroCarro() + ", de + " + getPiloto().getNome() + ", não pode ficar acima da permitida!");
         }
     }
 
     public void frear() {
-        if (isLigado() && (getVelocidadeAtual() >= 1)) {
-            setVelocidadeAtual(getVelocidadeAtual() - 1);
+        if (isLigado() && (getVelocidadeAtual() >= 10)) { // para a velocidade não ficar negativa
+            setVelocidadeAtual(getVelocidadeAtual() - 10); // frear de 10 em 10 km/h
             System.out.println(getPiloto().getNome() + " freou! Velocidade atual = " + getVelocidadeAtual() + " km/h");
         } else if (!isLigado()) {
-            System.out.println(getPiloto().getNome() + ", o carro não está ligado!");
+            System.out.println("O carro de " + getPiloto().getNome() + " não está ligado!");
+        }
+    }
+
+    public void parar() {
+        if (getVelocidadeAtual() != 0){
+            setVelocidadeAtual(0);
+            System.out.println(getPiloto().getNome() + " parou o carro!");
+        } else {
+            System.out.println("O carro de " + getPiloto().getNome() + " já está parado!");
         }
     }
 
